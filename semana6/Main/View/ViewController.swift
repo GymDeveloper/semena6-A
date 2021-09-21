@@ -27,6 +27,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func setUpTable() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.isEditing = true
+        navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     func bind() {
@@ -53,6 +55,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return characterViewModel.arrayCharacters.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         
@@ -74,6 +77,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         return cell
     }
+    
+    // reemplazo de editing
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            print(indexPath.row)
+        }
+        
+    }
+    
+    // reemplazo de moveRowAt
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        print("movimiento")
+    }
+    
 
 }
 
